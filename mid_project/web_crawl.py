@@ -31,16 +31,14 @@ query = ['bts 다이너마이트', '뉴진스 디토'] #예시
 for i in query:
     # 검색창 
     box = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/section/section/main/div/form/div/span/input'))
-    )
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/section/section/main/div/form/div/span/input')))
     box.clear()  # 이전 검색 지우기
     box.send_keys(i) # 검색창에 쿼리넣기
     box.send_keys(Keys.ENTER) #엔터
     
     # 검색 결과의 첫 번째 항목 클릭
     btn = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, '/html/body/div[2]/section/section/main/div/div[2]/div[2]/div[1]/a'))
-    )
+        EC.element_to_be_clickable((By.XPATH, '/html/body/div[2]/section/section/main/div/div[2]/div[2]/div[1]/a')))
     if btn:
         btn.click() #클릭
     else:
