@@ -1,4 +1,3 @@
-# tunebat 사이트 크롤링
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -25,20 +24,22 @@ time.sleep(7)
 
 ########################여기에 질문 삽입#################################
 ########################################################################
-query = ['bts 다이너마이트', '뉴진스 디토'] #예시
+query = ['bts 다이너마이트', '뉴진스 디토','계은숙 기다리는여심','조용필 bounce','비스트 숨','이문세 휘파람']
 ########################################################################
 
 for i in query:
     # 검색창 
     box = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/section/section/main/div/form/div/span/input')))
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/section/section/main/div/form/div/span/input'))
+    )
     box.clear()  # 이전 검색 지우기
     box.send_keys(i) # 검색창에 쿼리넣기
     box.send_keys(Keys.ENTER) #엔터
     
     # 검색 결과의 첫 번째 항목 클릭
     btn = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, '/html/body/div[2]/section/section/main/div/div[2]/div[2]/div[1]/a')))
+        EC.element_to_be_clickable((By.XPATH, '/html/body/div[2]/section/section/main/div/div[2]/div[2]/div[1]/a'))
+    )
     if btn:
         btn.click() #클릭
     else:
@@ -49,12 +50,15 @@ for i in query:
     lists=[] #데이터 저장될 리스트 생성 
     k=0
     #가수-제목-키-카멜롯-bpm-길이 정보 가져오기 
+    prelists=[]
     for item in data1:
-        if k==0 or k==1 or k==14 or k==16 or k==18 or k==20:
-            lists.append(item.text)
+        prelists.append(item.text)
         k+=1            #이걸로 enumerate대체 
         if k>21: break
-            
+    if prelists[13].startswith('Label'):
+        lists.extend([prelists[0],prelists[1],prelists[14],prelists[16],prelists[18],prelists[20]])
+    else:
+        lists.extend([prelists[0],prelists[1],prelists[13],prelists[15],prelists[17],prelists[19]])
     # popularity-energy-danceability-happiness-acousticness-instrumentalness-liveness-speechiness-loudness
     data2 = driver.find_elements(By.CLASS_NAME, 'ant-progress-text') 
     for item in data2:
@@ -69,5 +73,4 @@ for i in query:
     time.sleep(2)  # 홈페이지 로딩을 위한 대기
 
 driver.quit()
-
 
