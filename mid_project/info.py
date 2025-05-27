@@ -8,7 +8,7 @@
 angle = 2π × (값 - 1) / 12
 np.sin(angle)
 np.cos(angle)
-
+추후 feature_importance에서 importance_camelot = importance_sin + importance_cos 처럼 합산하기도 함 
 
 import numpy as np
 
