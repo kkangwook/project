@@ -88,6 +88,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os
 import time
+import csv
+
+f=open('./example.csv','w',encoding='utf-8-sig',newline='')
+writer=csv.writer(f)
+writer.writerow(['song','artist','genre','lyric','like'])
 
 from selenium.webdriver.chrome.options import Options
 # 로봇 무시 
@@ -137,7 +142,7 @@ for i in query:
         time.sleep(2)
         like=driver.find_element(By.ID, 'd_like_count')
         info.append(like.text)
-        data.append(info)
+        writer.writerow(info)
         print(f"Successfully processed: {i}")  # 진행상황 확인용
         
     except Exception as e:
@@ -146,8 +151,57 @@ for i in query:
 
 print(data)
 driver.quit()
+f.close()
 
 
+
+# song, artist
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import os
+import time
+
+from selenium.webdriver.chrome.options import Options
+# 로봇 무시 
+options = Options()
+options.add_argument('--disable-blink-features=AutomationControlled')
+
+# 크롬 driver 생성 
+driver_path = ChromeDriverManager().install()
+correct_driver_path = os.path.join(os.path.dirname(driver_path), "chromedriver.exe")
+driver = webdriver.Chrome(service=Service(executable_path=correct_driver_path), options=options)
+
+info=[]
+url='https://www.melon.com/chart/age/index.htm?chartType=YE&chartGenre=KPOP&chartDate=2024'
+driver.get(url)
+time.sleep(2)
+name1=driver.find_element(By.XPATH, '/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[1]/td[4]/div/div/div[1]/span/strong/a')
+info.append(name1.text)
+name2=driver.find_element(By.XPATH, '/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[1]/td[4]/div/div/div[2]/div[1]/a')
+info.append(name2.text)
+
+
+
+
+for i in range(1, 51):
+    song=driver.find_element(By.XPATH,f'/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[{i}]/td[4]/div/div/div[1]/span/strong/a' )
+    artist=driver.find_element(By.XPATH,f'/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[{i}]/td[4]/div/div/div[2]/div[1]/a')
+    print(song.text, artist.text)
+time.sleep(1)
+btn=driver.find_element(By.XPATH, '/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[2]/span/a')
+btn.click()
+time.sleep(1)
+for i in range(51, 101):
+    song=driver.find_element(By.XPATH,f'/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[{i}]/td[4]/div/div/div[1]/span/strong/a' )
+    artist=driver.find_element(By.XPATH, f'/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[{i}]/td[4]/div/div/div[2]/div[1]/a')
+    print(song.text, artist.text)
+
+driver.quit()
 
 
 
