@@ -1,4 +1,4 @@
-# tunebat
+# tunebat: artist-song-key-camelot-bpm-duration-popularity-energy-danceability-happiness-acousticness-instrumentalness-liveness-speechiness-loudness
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -78,7 +78,7 @@ driver.quit()
 
 
 
-#mwlon
+#melon: song-artist-genre-lyric-like
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -93,52 +93,61 @@ from selenium.webdriver.chrome.options import Options
 # 로봇 무시 
 options = Options()
 options.add_argument('--disable-blink-features=AutomationControlled')
-query=['에스파 아마겟돈']
+
 # 크롬 driver 생성 
 driver_path = ChromeDriverManager().install()
 correct_driver_path = os.path.join(os.path.dirname(driver_path), "chromedriver.exe")
 driver = webdriver.Chrome(service=Service(executable_path=correct_driver_path), options=options)
+
+#-----------------------------query입력---------------------------------
+query = ['bts 다이너마이트', '뉴진스 디토','계은숙 기다리는여심','조용필 bounce','비스트 숨','이문세 휘파람']
+#----------------------------------------------------------------------
+
 url='https://www.melon.com/index.htm'
 driver.get(url)
 time.sleep(3)
-box=driver.find_element(By.ID,'top_search')
-box.send_keys(query)
-box.send_keys(Keys.ENTER)
-time.sleep(2)
-supernova=driver.find_element(By.ID,'frm_songList')
-memo=supernova.find_element(By.CLASS_NAME,'btn_icon_detail')
-memo.click()
-time.sleep(2)
-info=[]
-name=driver.find_element(By.CLASS_NAME, 'song_name')
-info.append(name.text)
-name2=driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[1]/div[2]/a/span[1]')
-info.append(name2.text)
-name3=driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[2]/dl/dd[3]')
-info.append(name3.text)
-name4=driver.find_element(By.ID, 'd_video_summary')
-info.append(name4.text.replace('\n',' '))
-name5=driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[1]/div[2]/a/span[1]')
-name5.click()
-time.sleep(2)
-name6=driver.find_element(By.ID, 'd_like_count')
-info.append(name6.text)
+data=[]
 
-print(info)
+for i in query:
+    try:
+        # 홈페이지로 직접 이동
+        driver.get(url)
+        time.sleep(3)
+        
+        box=driver.find_element(By.ID,'top_search')
+        box.clear()
+        box.send_keys(i)
+        box.send_keys(Keys.ENTER)
+        time.sleep(2)
+        div=driver.find_element(By.ID,'frm_songList')
+        memo=div.find_element(By.CLASS_NAME,'btn_icon_detail')
+        memo.click()
+        time.sleep(2)
+        info=[]
+        song=driver.find_element(By.CLASS_NAME, 'song_name')
+        info.append(song.text)
+        artist=driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[1]/div[2]/a/span[1]')
+        info.append(artist.text)
+        genre=driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[2]/dl/dd[3]')
+        info.append(genre.text)
+        lyric=driver.find_element(By.ID, 'd_video_summary')
+        info.append(lyric.text.replace('\n',' '))
+        artist_info=driver.find_element(By.XPATH, '/html/body/div[1]/div[3]/div/div/div/form/div/div/div[2]/div[1]/div[2]/a/span[1]')
+        artist_info.click()
+        time.sleep(2)
+        like=driver.find_element(By.ID, 'd_like_count')
+        info.append(like.text)
+        data.append(info)
+        print(f"Successfully processed: {i}")  # 진행상황 확인용
+        
+    except Exception as e:
+        print(f"Error with {i}: {str(e)}")  # 에러 발생시 출력
+        continue  # 다음 곡으로 진행
+
+print(data)
 driver.quit()
 
 
 
 
-/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[6]/td[4]/div/div/div[1]/span/strong/a
-/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[7]/td[4]/div/div/div[1]/span/strong/a
-
-/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[96]/td[4]/div/div/div[1]/span/strong/a
-/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[96]/td[4]/div/div/div[2]/div[1]/a
-url='https://www.melon.com/chart/age/index.htm?chartType=YE&chartGenre=KPOP&chartDate='+'2024'
-data=[]
-for i in range(1,101):
-	a=f'/html/body/div/div[3]/div/div/div[4]/div/div[2]/div[1]/form/table/tbody/tr[{i}]/td[4]/div/div/div[1]/span/strong/a'
-	song=driver.get(By.XPATH, a)
-	data.append(song.text)
 
