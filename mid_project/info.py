@@ -1,5 +1,10 @@
 한국 음원 audio_feature사이트: TuneBat
 
+3.5:6.5의 클래스개수 불균형있음
+scale_pos_weight = n_negative / n_positive = 850 / 450 ≈ 1.89
+XGBClassifier(..., scale_pos_weight=1.89)-> 차트인 예측을 더 민감하게 만들 수 있음
+
+
 # 카멜롯, 키 중 카멜롯 사용하는게 좋을듯(좀더 사람이 듣는 분위기랑 더 비슷)
  # 카멜롯 인코딩방법: Embedding 또는 Sine/Cosine 인코딩 (권장)
 원형 데이터를 숫자로 인코딩할 때는 sin/cos 변환이 최적
