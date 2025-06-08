@@ -1,5 +1,34 @@
-한국 음원 audio_feature사이트: TuneBat
+# 한국 음원 audio_feature사이트: TuneBat
+ 데이터 출처
+Spotify Web API 활용
+사이트는 70 M+ 곡의 키, BPM 등의 메타데이터를 Spotify에서 가져옵니다.
+Tunebat 자체 분석 외에 이 Spotify 데이터베이스를 기반으로 한 정보도 포함 
 
+Essentia.js 기반 브라우저 분석
+파일 업로드 시 브라우저 내에서 Essentia.js(스페인 바르셀로나 UPF의 Music Technology Group(MTG) 개발)를 사용해 분석합니다 
+Energy, danceability, happiness 등 ML 기반 추정 지표는 학습된 분석 모델로 계산됩니다 
+
+✅ 신뢰성 평가
+키(BPM, Camelot key)
+Spotify API에서 가져오며, Tunebat 내 분석과 비교해 제공됨.
+Spotify 메타데이터는 정확도가 그리 높지 않다는 지적도 존재(< 33% 정확도) 
+반면 Tunebat의 브라우저 분석도 “다른 상용 키/BPM 분석보다 더 나은 경우도 있다”고 공식 언급 
+
+Sentiment (energy/danceability/happiness)
+모두 ML 모델로 추정된 값이며, 절대적 진실이라기보다는 ‘곡 특성의 상대적 분석 결과’로 이해하는 것이 좋습니다 
+
+커뮤니티·전문가 의견
+Reddit / MP3Tag 등에서 Tunebat은 "유용하다"지만, 정확도 최상급이라기보다 참고용으로 사용됨 
+
+🧭 정리
+출처: Spotify API + Essentia.js + 자체 ML 모델 기반 분석.
+BPM/키: 비교적 믿을 만하지만, Spotify 기본 메타는 부정확할 수 있음 (특히 키 정보).
+표정값 (energy 등): 지표적 참고용이며, 절대값이 아님.
+결론: “정확한 사이트”라기보다는 믿을 만한 참고 사이트입니다.
+
+
+
+# 모델 정확도 높히기
 -svm도 사용해보기
 -cos-sin encoding말고 ohe도 해보기
 -3년단위로 해보기
