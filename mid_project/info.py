@@ -1,6 +1,11 @@
 한국 음원 audio_feature사이트: TuneBat
 
-3.5:6.5의 클래스개수 불균형있음
+-svm도 사용해보기
+-cos-sin encoding말고 ohe도 해보기
+-3년단위로 해보기
+-장르 숫자세서 일정개수 미만인 애들은 전부 기타로 치환하고 모델만을어보기
+-가중치 달리해서 해보기
+-3.5:6.5의 클래스개수 불균형있음
 scale_pos_weight = n_negative / n_positive = 850 / 450 ≈ 1.89
 XGBClassifier(..., scale_pos_weight=1.89)-> 차트인 예측을 더 민감하게 만들 수 있음
 
