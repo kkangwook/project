@@ -49,6 +49,11 @@ np.sin(angle)
 np.cos(angle)
 추후 feature_importance에서 importance_camelot = importance_sin + importance_cos 처럼 합산하기도 함 
 
+
+
+--검증으로 roc_auc_score()사용-> 실무에서 더 선호
+
+
 import numpy as np
 
 camelot_number = 8   # 1~12
