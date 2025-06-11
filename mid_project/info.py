@@ -1,5 +1,6 @@
 #ligthgbm이나 histgradientboosting써보기
 #시각화 상관관계도 보기
+# 록메탈컬럼*10하거나, 클래스별로 가중치를 달리주거나, 샘플별 록메탈포함한애들 가중치 더 높게주거나 
 
 # 한국 음원 audio_feature사이트: TuneBat
  데이터 출처
