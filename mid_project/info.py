@@ -1,3 +1,6 @@
+#ligthgbm이나 histgradientboosting써보기
+#시각화 상관관계도 보기
+
 # 한국 음원 audio_feature사이트: TuneBat
  데이터 출처
 Spotify Web API 활용
@@ -25,6 +28,8 @@ Reddit / MP3Tag 등에서 Tunebat은 "유용하다"지만, 정확도 최상급�
 BPM/키: 비교적 믿을 만하지만, Spotify 기본 메타는 부정확할 수 있음 (특히 키 정보).
 표정값 (energy 등): 지표적 참고용이며, 절대값이 아님.
 결론: “정확한 사이트”라기보다는 믿을 만한 참고 사이트입니다.
+
+
 
 
 
