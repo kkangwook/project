@@ -1,6 +1,35 @@
 #ligthgbm이나 histgradientboosting써보기
 #시각화 상관관계도 보기
 # 록메탈컬럼*10하거나, 클래스별로 가중치를 달리주거나, 샘플별 록메탈포함한애들 가중치 더 높게주거나 
+#xgboostparameter
+xgb = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
+
+# Define parameter grid to sample from
+param_dist = {
+    'n_estimators': [50, 100, 200, 300, 500],
+    'max_depth': [3, 4, 5, 6, 7, 8],
+    'learning_rate': np.linspace(0.01, 0.3, 30),
+    'subsample': np.linspace(0.5, 1.0, 6),
+    'colsample_bytree': np.linspace(0.5, 1.0, 6),
+    'gamma': [0, 0.1, 0.2, 0.3, 0.4],
+    'reg_alpha': [0, 0.01, 0.1, 1, 10],  # L1 regularization
+    'reg_lambda': [1, 1.5, 2, 3, 5]      # L2 regularization
+}
+
+# Setup RandomizedSearchCV
+random_search = RandomizedSearchCV(
+    estimator=xgb,
+    param_distributions=param_dist,
+    n_iter=50,  # number of random parameter sets to try
+    scoring='roc_auc',
+    cv=5,
+    verbose=1,
+    random_state=42,
+    n_jobs=-1
+)
+
+
+
 
 # 한국 음원 audio_feature사이트: TuneBat
  데이터 출처
