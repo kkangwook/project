@@ -11,6 +11,10 @@ xgb = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
 # 단순 가수와 음악의 정보만으로 예측가능할까?
 # 날씨별 배달음식 추천모델에서 svm vs randomforest특징 가져오기
 #차트인예측모델==인기예측모델
+# 튠뱃쓴이유-> 스포티파이api지원중단
+# chart_out 락/메탈빼보기
+# 마지막에 어떤 특징일수록 차트인할수있는지 조건쓰기
+
 
 #데이터전처리:
 1. 결측치 확인후 제거
