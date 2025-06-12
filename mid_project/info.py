@@ -10,6 +10,7 @@ xgb = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
 # permutation importance로 입력변수 중 하나의 영향을 제거하여 성능의 차이가 얼마나 나는지 확인
 # 단순 가수와 음악의 정보만으로 예측가능할까?
 # 날씨별 배달음식 추천모델에서 svm vs randomforest특징 가져오기
+#차트인예측모델==인기예측모델
 
 #데이터전처리:
 1. 결측치 확인후 제거
