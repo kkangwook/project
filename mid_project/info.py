@@ -6,6 +6,20 @@ xgb = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
 
 
 #앙상블에서는 레이블인코딩도방법,모든변수넣고 feature_importance로 중요도봐서 어떤변수뺄지결정
+# class1과 class0의 샘플수 거의 1대1로 샘플불균형의 문제는 없다
+# permutation importance로 입력변수 중 하나의 영향을 제거하여 성능의 차이가 얼마나 나는지 확인
+# 단순 가수와 음악의 정보만으로 예측가능할까?
+
+#데이터전처리:
+1. 결측치 확인후 제거
+2. 이상치확인 (min, max)
+3. like는 콤마제거후 숫자화
+4. 장르는 여러 장르일경우 앞의 대표 장르만 가져옴
+5. 
+4.카멜롯의 원핫인코딩 vs cos-sin인코딩 + svc vs xgboostclassifier -> auc점수로 확인
+5. xgboost와 cos-sin인코딩 선택 후 lightGBM, histgradient boosting과 도 비교-> xgboost
+6. xgboost의 feature importance봐서 중요 변수 선택
+7. 앙상블에서는 레이블인코딩도방법,모든변수넣고 feature_importance로 중요도봐서 어떤변수뺄지결정
 
 # .score는 얼마나 잘 맞추는지, .auc는 예측확률이 얼마나 정확한지(0.51, 0.49이런건 별로-> 덜 맞추더라도 0.8, 0.2이런식으로 나오게끔)
 
