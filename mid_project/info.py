@@ -4,6 +4,9 @@
 #xgboostparameter
 xgb = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
 
+
+# .score는 얼마나 잘 맞추는지, .auc는 예측확률이 얼마나 정확한지(0.51, 0.49이런건 별로-> 덜 맞추더라도 0.8, 0.2이런식으로 나오게끔)
+
 # Define parameter grid to sample from
 param_dist = {
     'n_estimators': [50, 100, 200, 300, 500],
