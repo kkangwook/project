@@ -5,6 +5,8 @@
 xgb = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
 
 
+#앙상블에서는 레이블인코딩도방법,모든변수넣고 feature_importance로 중요도봐서 어떤변수뺄지결정
+
 # .score는 얼마나 잘 맞추는지, .auc는 예측확률이 얼마나 정확한지(0.51, 0.49이런건 별로-> 덜 맞추더라도 0.8, 0.2이런식으로 나오게끔)
 
 # Define parameter grid to sample from
