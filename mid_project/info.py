@@ -25,7 +25,7 @@ xgb = XGBClassifier(use_label_encoder=False, eval_metric='logloss')
 4.카멜롯의 원핫인코딩 vs cos-sin인코딩 + svc vs xgboostclassifier -> auc점수로 확인
 5. xgboost와 cos-sin인코딩 선택 후 lightGBM, histgradient boosting과 도 비교-> xgboost
 6. xgboost의 feature importance봐서 중요 변수 선택
-7. 앙상블에서는 레이블인코딩도방법,모든변수넣고 feature_importance로 중요도봐서 어떤변수뺄지결정
+7. 앙상블에서는 레이블인코딩도방법,모든변수넣고 feature_importance로 중요도봐서 어떤변수뺄지결정 -> 레이블 인코딩보다 원핫인코딩이 나음
 
 # .score는 얼마나 잘 맞추는지, .auc는 예측확률이 얼마나 정확한지(0.51, 0.49이런건 별로-> 덜 맞추더라도 0.8, 0.2이런식으로 나오게끔)
 
