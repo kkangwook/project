@@ -3,7 +3,7 @@
 # 장르 label encoding도 해봤지만 one-hot-encoding이 더 결과 좋았음
 # 변수설정한 이유설명하기
     - 키같은 경우 카멜롯과 중복되어서 뺌, 사전조사결과 음원길이는 차트인에 별 영향을 미치지 않아 뻄, happiness와 같은 감정과 관련된 주관적인 특성들도 제거
-    - 음악 데이터와 상관없는 speechiness같은거 제거 하여 현재의 것만 사용-> 나중에 결과를 보면 알겠지만 xgb의 feature_importance에서 bpm,energy,dan,ac모두 상위권에 위치해 그대로 유지
+    - 음악 데이터와 상관없는 liveness(청중여부)같은거 제거 하여 현재의 것만 사용-> 나중에 결과를 보면 알겠지만 xgb의 feature_importance에서 bpm,energy,dan,ac모두 상위권에 위치해 그대로 유지
 # 원핫인코딩 한 애들은 상대적으로 feature importance가 낮게 나올수밖에 없음/ 카멜롯의 sin-cos인코딩은 3차원으로 줄였기에 상대적으로 중요도큼
     - feature_importance가 크다-> 손실감소에 큰 기여를 했다-> 
   따라서 a라는 특성이 너무 중요해서 초반에 크게 그 특성으로 나누고 나머지를 세세하게 나눌떄 다른 특성들을 많이써서 a의 feature importance값이 작게 나올수도있어? -> 없다
